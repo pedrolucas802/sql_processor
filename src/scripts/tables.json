@@ -1,0 +1,268 @@
+[
+  {
+    "tableName": "Categoria",
+    "attributes": [
+      {
+        "name": "idCategoria",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Descricao",
+        "dataType": "VARCHAR(45)",
+        "isNotNull": true
+      }
+    ]
+  },
+  {
+    "tableName": "Produto",
+    "attributes": [
+      {
+        "name": "idProduto",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Nome",
+        "dataType": "VARCHAR(45)",
+        "isNotNull": true
+      },
+      {
+        "name": "Descricao",
+        "dataType": "VARCHAR(200)"
+      },
+      {
+        "name": "Preco",
+        "dataType": "DECIMAL(18,2)",
+        "isNotNull": true,
+        "defaultValue": 0
+      },
+      {
+        "name": "QuantEstoque",
+        "dataType": "DECIMAL(10,2)",
+        "isNotNull": true,
+        "defaultValue": 0
+      },
+      {
+        "name": "Categoria_idCategoria",
+        "dataType": "INT",
+        "isNotNull": true
+      }
+    ]
+  },
+  {
+    "tableName": "TipoCliente",
+    "attributes": [
+      {
+        "name": "idTipoCliente",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Descricao",
+        "dataType": "VARCHAR(45)"
+      }
+    ]
+  },
+  {
+    "tableName": "Cliente",
+    "attributes": [
+      {
+        "name": "idCliente",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Nome",
+        "dataType": "VARCHAR(45)",
+        "isNotNull": true
+      },
+      {
+        "name": "Email",
+        "dataType": "VARCHAR(100)",
+        "isNotNull": true
+      },
+      {
+        "name": "Nascimento",
+        "dataType": "DATETIME"
+      },
+      {
+        "name": "Senha",
+        "dataType": "VARCHAR(200)"
+      },
+      {
+        "name": "TipoCliente_idTipoCliente",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "DataRegistro",
+        "dataType": "DATETIME",
+        "isNotNull": true,
+        "defaultValue": "Now()"
+      }
+    ]
+  },
+  {
+    "tableName": "TipoEndereco",
+    "attributes": [
+      {
+        "name": "idTipoEndereco",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Descricao",
+        "dataType": "VARCHAR(45)",
+        "isNotNull": true
+      }
+    ]
+  },
+  {
+    "tableName": "Endereco",
+    "attributes": [
+      {
+        "name": "idEndereco",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "EnderecoPadrao",
+        "dataType": "TINYINT",
+        "isNotNull": true,
+        "defaultValue": 0
+      },
+      {
+        "name": "Logradouro",
+        "dataType": "VARCHAR(45)"
+      },
+      {
+        "name": "Numero",
+        "dataType": "VARCHAR(45)"
+      },
+      {
+        "name": "Complemento",
+        "dataType": "VARCHAR(45)"
+      },
+      {
+        "name": "Bairro",
+        "dataType": "VARCHAR(45)"
+      },
+      {
+        "name": "Cidade",
+        "dataType": "VARCHAR(45)"
+      },
+      {
+        "name": "UF",
+        "dataType": "VARCHAR(2)"
+      },
+      {
+        "name": "CEP",
+        "dataType": "VARCHAR(8)"
+      },
+      {
+        "name": "TipoEndereco_idTipoEndereco",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Cliente_idCliente",
+        "dataType": "INT",
+        "isNotNull": true
+      }
+    ]
+  },
+  {
+    "tableName": "Telefone",
+    "attributes": [
+      {
+        "name": "Numero",
+        "dataType": "VARCHAR(42)",
+        "isNotNull": true
+      },
+      {
+        "name": "Cliente_idCliente",
+        "dataType": "INT",
+        "isNotNull": true
+      }
+    ]
+  },
+  {
+    "tableName": "Status",
+    "attributes": [
+      {
+        "name": "idStatus",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Descricao",
+        "dataType": "VARCHAR(45)",
+        "isNotNull": true
+      }
+    ]
+  },
+  {
+    "tableName": "Pedido",
+    "attributes": [
+      {
+        "name": "idPedido",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Status_idStatus",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "DataPedido",
+        "dataType": "DATETIME",
+        "isNotNull": true,
+        "defaultValue": "Now()"
+      },
+      {
+        "name": "ValorTotalPedido",
+        "dataType": "DECIMAL(18,2)",
+        "isNotNull": true,
+        "defaultValue": 0
+      },
+      {
+        "name": "Cliente_idCliente",
+        "dataType": "INT",
+        "isNotNull": true
+      }
+    ]
+  },
+  {
+    "tableName": "Pedido_has_Produto",
+    "attributes": [
+      {
+        "name": "idPedidoProduto",
+        "dataType": "INT",
+        "isAutoIncrement": true,
+        "isNotNull": true
+      },
+      {
+        "name": "Pedido_idPedido",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Produto_idProduto",
+        "dataType": "INT",
+        "isNotNull": true
+      },
+      {
+        "name": "Quantidade",
+        "dataType": "DECIMAL(10,2)",
+        "isNotNull": true
+      },
+      {
+        "name": "PrecoUnitario",
+        "dataType": "DECIMAL(18,2)",
+        "isNotNull": true
+      }
+    ]
+  }
+]
