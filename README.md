@@ -1,4 +1,4 @@
-# static-hash-index
+# SQL Processor and UI
 
 ## Project setup
 ```
