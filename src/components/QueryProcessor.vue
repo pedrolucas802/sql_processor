@@ -120,38 +120,31 @@ export default defineComponent({
     convertToRelationalAlgebra(parsedSQL: SQLComponent): string {
       let relationalAlgebra = '';
 
-      // Step 1: Identify each clause
       const selectClause = parsedSQL.children?.find(child => child.type === 'SELECT');
       const fromClause = parsedSQL.children?.find(child => child.type === 'FROM');
       const joinClauses = parsedSQL.children?.filter(child => child.type === 'JOIN');
       const whereClause = parsedSQL.children?.find(child => child.type === 'WHERE');
       const andClauses = parsedSQL.children?.filter(child => child.type === 'AND');
 
-      // Step 2: Convert each clause to relational algebra
-      // SELECT clause
       if (selectClause) {
         const selectColumns = selectClause.children?.map(child => child.value).join(', ');
         relationalAlgebra += `π ${selectColumns}\n`;
       }
 
-      // FROM clause
       if (fromClause) {
         relationalAlgebra += `${fromClause.value}`;
       }
 
-      // JOIN clauses
       if (joinClauses) {
         joinClauses.forEach(join => {
           relationalAlgebra += ` ⨝ ${join.value} `;
         });
       }
 
-      // WHERE clause
       if (whereClause) {
         relationalAlgebra += `\nσ ${whereClause.value}`;
       }
 
-      // AND clauses
       if (andClauses) {
         andClauses.forEach(and => {
           relationalAlgebra += ` ∧ ${and.value}`;
@@ -226,7 +219,6 @@ export default defineComponent({
         }
       }
 
-      // Print relational algebra if available
       if (node.relationalAlgebra) {
         result += `${indent}     ${node.relationalAlgebra}\n`;
       }
